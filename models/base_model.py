@@ -9,13 +9,32 @@ from datetime import datetime
 class BaseModel:
     """ base class for all models in this project """
     
-    def init(self):
+    def init(self, *args, **kwargs):
         """
-        Constructor of the class BaseModel
+        Initializes a new instance of the BaseModel class.
+        If kwargs is not empty:
+            each key of this dictionary is an attribute name
+            each value of this dictionary is the value of this attribute name
+            created_at and updated_at are strings in this dictionary,
+            but inside your BaseModel instance is working with datetime object.
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+
+        if kwargs:
+            for key, value in kwargs.items():
+                if key == "created_at" or key == "updated_at":
+                     value = datetime.datetime.strptime(value,
+                             '%Y-%m-%dT%H:%M:%S.%f')
+                if key != "__class__":
+                    setattr(self, key, value)
+            self.id = kwargs["id"] if "id" in kwargs else str(uuid.uuid4())
+            self.created_at = kwargs["created_at"] if "created_at" in
+                    kwargs else datetime.datetime.now()
+            self.updated_at = datetime.datetime.now()  
+            
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """ String representation of the class BaseModel """
