@@ -8,7 +8,7 @@ from datetime import datetime
 
 class BaseModel:
     """ base class for all models in this project """
-    
+
     def init(self, *args, **kwargs):
         """
         Initializes a new instance of the BaseModel class.
@@ -22,15 +22,15 @@ class BaseModel:
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
-                     value = datetime.datetime.strptime(value,
-                             '%Y-%m-%dT%H:%M:%S.%f')
+                    value = datetime.datetime.strptime(value,
+                                                       '%Y-%m-%dT%H:%M:%S.%f')
                 if key != "__class__":
                     setattr(self, key, value)
             self.id = kwargs["id"] if "id" in kwargs else str(uuid.uuid4())
             self.created_at = kwargs["created_at"] if "created_at" in
-                    kwargs else datetime.datetime.now()
-            self.updated_at = datetime.datetime.now()  
-            
+            kwargs else datetime.datetime.now()
+            self.updated_at = datetime.datetime.now()
+
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -38,17 +38,17 @@ class BaseModel:
 
     def __str__(self):
         """ String representation of the class BaseModel """
-        
+
         return "[{}] ({}) {}".format(type(self).__name__, self.id,
-                self.__dict__)
+                                     self.__dict__)
 
     def save(self):
         """ Updates the public instance attribute updated_at with
             the current datetime
         """
-        
+
         self.updated_at = datetime.now()
-    
+
     def to_dict(self):
         """
             Returns a dictionary containing all keys/values
