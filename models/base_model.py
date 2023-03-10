@@ -4,7 +4,7 @@
 """
 import uuid
 from datetime import datetime
-from modelss import storage
+import models
 
 
 class BaseModel:
@@ -28,8 +28,7 @@ class BaseModel:
                 if key != "__class__":
                     setattr(self, key, value)
             self.id = kwargs["id"] if "id" in kwargs else str(uuid.uuid4())
-            self.created_at = kwargs["created_at"] if "created_at" in
-            kwargs else datetime.datetime.now()
+            self.created_at = kwargs["created_at"] if "created_at" in kwargs else datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
 
         else:
