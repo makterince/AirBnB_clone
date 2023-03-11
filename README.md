@@ -1,87 +1,116 @@
-AIRBNB Clone Project
-https://camo.githubusercontent.com/a8cd2eef2325c425519095dc2501111e630a77eddb454938c527cb82ea9c3aeb/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f696e7472616e65742d70726f6a656374732d66696c65732f686f6c626572746f6e7363686f6f6c2d6869676865722d6c6576656c5f70726f6772616d6d696e672b2f3236332f4842544e2d68626e622d46696e616c2e706e67
+# AirBnB_clone
+completed first web development project for ALX Software Engineering School.
 
-This is a command-line interface (CLI) based application that mimics the functionalities of the popular online vacation rental platform, Airbnb. Users can create and manage properties, book and search for available properties, and view past and current bookings.
+![](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/263/HBTN-hbnb-Final.png)
 
-The project is written in Python.
-Command Interpreter
-The command interpreter allows users to interact with the application
-through a series of commands. Users can perform CRUD
-(Create, Read, Update, Delete) operations on properties and bookings,
-search for available properties, and view their booking history.
+# AirBnB clone - The console
+The goal of the project is to deploy on a server a simple copy of the AirBnB website.
+It won’t implement all the features, only some of them to cover all fundamental concepts of the higher level programming track.
 
-How to start it
-Clone the repository to your local machine
-Navigate to the root of the project directory
-Run the command python console.py to start the application
-How to use it
-Once you have started the application, you will be prompted with
-the Airbnb prompt. From here, you can enter commands to interact
-with the application.
+# First step: Write a command interpreter to manage your AirBnB objects.
+This first step is very important because it will use what you build during this project with all other following projects: HTML/CSS templating, database storage, API, front-end in
 
-Some examples of commands that you can use include:
-    create User - creates a new user
-show User - shows information about a specific user
-update User - updates information about a user
-destroy User - deletes a user
-create Place - creates a new property
-show Place - shows information about a specific property
-update Place - updates information about a property
-destroy Place - deletes a property
-create Booking - creates a new booking
-show Booking - shows information about a specific booking
-update Booking - updates information about a booking
-destroy Booking - deletes a booking
-all - shows all instances of a specific class
-count - shows the number of instances of a specific class
-quit - exits the application
+# What’s a command interpreter?
+Do you remember the Shell? It’s exactly the same but limited to a specific use-case. In our case, we want to be able to manage the objects of our project:
 
-How to use it
-Once you have started the application, you will be prompted with the
-Airbnb prompt. From here, you can enter commands to interact with the
-application.
+* Create a new object (ex: a new User or a new Place)
+* Retrieve an object from a file, a database etc…
+* Do operations on objects (count, compute stats, etc…)
+* Update attributes of an object
+* Destroy an object
 
-Some examples of commands that you can use include:
+# Execution
+Your could work like this in interactive mode:
 
-    create User - creates a new user
-show User - shows information about a specific user
-update User - updates information about a user
-destroy User - deletes a user
-create Place - creates a new property
-show Place - shows information about a specific property
-update Place - updates information about a property
-destroy Place - deletes a property
-create Booking - creates a new booking
-show Booking - shows information about a specific booking
-update Booking - updates information about a booking
-destroy Booking - deletes a booking
-all - shows all instances of a specific class
-count - shows the number of instances of a specific class
-quit - exits the application
-For a full list of available commands, please refer to the documentation.
+	$ ./console.py
+	(hbnb) help
 
-Examples
-To create a new user:
+	Documented commands (type help <topic>):
+	========================================
+	EOF  help  quit
 
-    Airbnb > create User
-*** Creating User***
-Enter the user's email: mak_Terince
-Enter the user's password: 123
-Enter the user's first name: Mak
-Enter the user's last name: Terince
-User created with ID 12345
+	(hbnb) 
+	(hbnb) 
+	(hbnb) quit
+	$
 
-To show information about a specific property:
+But also in non-interactive mode: (like the Shell project in C)
 
-    Airbnb > show Place 67890
-*** Place 67890***
-Name: Beautiful Beach House
-Description: A stunning beach house with ocean views
-City: Miami
-Price per night: $250
-To update a booking:
+	$ echo "help" | ./console.py
+	(hbnb)
 
-    *** updating Booking 98765***
-Enter a new start date(YYYY/MM/DD): 2022/07/01
-Enter a new end date(YYYY/MM/DD): 2022/07/07
-Booking 98765 updated
+	Documented commands (type help <topic>):
+	========================================
+	EOF  help  quit
+	(hbnb) 
+	$
+	$ cat test_help
+	help
+	$
+	$ cat test_help | ./console.py
+	(hbnb)
+
+	Documented commands (type help <topic>):
+	========================================
+	EOF  help  quit
+	(hbnb) 
+	$
+
+# Commands:
+* create - create an object
+* show - show an object (based on id)
+* destroy - destroy an object
+* all - show all objects, of one type or all types
+* update - Updates an instance based on the class name and id
+* quit/EOF - quit the console
+* help - see descriptions of commands
+
+To start console type in shell
+
+    AirBnB_clone$ ./console.py
+    (hbnb) 
+
+## Create
+To create an object use format "create <ClassName>" ex:
+
+	(hbnb) create BaseModel
+
+## Show
+To show an instance based on the class name and id. Ex: 
+
+	(hbnb) show BaseModel 1234-1234-1234.
+
+## Destroy
+To Delete an instance of an object use "destroy <ClassName> id". Ex: 
+
+	(hbnb) destroy BaseModel 1234-1234-1234.
+
+## All
+all or all <class name> Ex: 
+
+	(hbnb) all or all State
+
+## Update
+Updates an instance based on the class name and id:
+
+	(hbnb) update BaseModel 1234-1234-1234 email "aibnb@holbertonschool.com"
+
+## Quit
+quit or EOF
+
+## Help
+help or help <command> Ex: 
+
+	(hbnb) help or help quit
+	 Defines quit option
+	(hbnb) 
+
+# Supported classes:
+* BaseModel
+* User
+* State
+* City
+* Amenity
+* Place
+* Review
+
