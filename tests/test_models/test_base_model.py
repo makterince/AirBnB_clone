@@ -16,27 +16,27 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(model.id, str)
         self.assertIsInstance(model.created_at, datetime.datetime)
         self.assertIsInstance(model.updated_at, datetime.datetime)
-        
+
     def test_init_with_kwargs(self):
         """
         Test initialization of BaseModel instance with kwargs.
         """
         kwargs = {'id': '123', 'created_at': '2022-03-09T11:30:00.000000',
-                'updated_at': '2022-03-09T11:30:00.000000',
-                'name': 'Test Model'}
+                  'updated_at': '2022-03-09T11:30:00.000000',
+                  'name': 'Test Model'}
         model = BaseModel(**kwargs)
         self.assertEqual(model.id, '123')
         self.assertEqual(model.name, 'Test Model')
         self.assertIsInstance(model.created_at, datetime.datetime)
         self.assertIsInstance(model.updated_at, datetime.datetime)
-        
+
     def test_to_dict(self):
         """
         Test to_dict method of BaseModel instance.
         """
         kwargs = {'id': '123', 'created_at': '2022-03-09T11:30:00.000000',
-                'updated_at': '2022-03-09T11:30:00.000000',
-                'name': 'Test Model'}
+                  'updated_at': '2022-03-09T11:30:00.000000',
+                  'name': 'Test Model'}
         model = BaseModel(**kwargs)
         model_dict = model.to_dict()
         self.assertEqual(model_dict['__class__'], 'BaseModel')
@@ -44,7 +44,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(model_dict['name'], 'Test Model')
         self.assertIsInstance(model_dict['created_at'], str)
         self.assertIsInstance(model_dict['updated_at'], str)
-        
+
     def test_save(self):
         """
         Test save method of BaseModel instance.
