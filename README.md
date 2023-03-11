@@ -1,7 +1,8 @@
 # AirBnB_clone
 completed first web development project for ALX Software Engineering School.
 
-![](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/263/HBTN-hbnb-Final.png)
+![](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher
+-level_programming+/263/HBTN-hbnb-Final.png)
 
 # AirBnB clone - The console
 The goal of the project is to deploy on a server a simple copy of the AirBnB website.
