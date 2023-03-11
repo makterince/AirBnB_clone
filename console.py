@@ -142,7 +142,7 @@ class HBNBCommand(cmd.Cmd):
         usage:  update <class> <id> <attribute_name> <attribute_value> or
                 <class>.update(<id>, <attribute_name>, <attribute_value>) or
                 <class>.update(<id>, <dictionary>)
-        """     
+        """
         arr = line.split()
         if len(arr) < 1:
             print("** class name missing **")
@@ -183,8 +183,9 @@ class HBNBCommand(cmd.Cmd):
         if line is None:
             return
 
-        cmdPattern = "^([A-Za-z]+)\.([a-z]+)\(([^(]*)\)"
-        paramsPattern = """^"([^"]+)"(?:,\s*(?:"([^"]+)"|(\{[^}]+\}))(?:,\s*(?:("?[^"]+"?)))?)?"""
+        cmdPattern = "^([A-Za-z]+)\\.([a-z]+)\\(([^(]*)\\)"
+        paramsPattern = """^"([^"]+)"(?:,\\s*(?:"([^"]+)"
+        |(\\{[^}]+\\}))(?:,\\s*(?:("?[^"]+"?)))?)?"""
         m = re.match(cmdPattern, line)
         if not m:
             super().default(line)
@@ -209,6 +210,7 @@ class HBNBCommand(cmd.Cmd):
 
         if method == 'update':
             return self.do_update(cmd)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
