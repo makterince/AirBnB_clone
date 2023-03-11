@@ -9,7 +9,7 @@ import os.path
 from models.base_model import BaseModel
 from models.user import User
 
-class_dict = {
+class_name = {
         "BaseModel": BaseModel,
         "User": User
         }

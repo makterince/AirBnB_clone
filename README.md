@@ -89,8 +89,3 @@ To update a booking:
 Enter a new start date (YYYY/MM/DD): 2022/07/01
 Enter a new end date (YYYY/MM/DD): 2022/07/07
 Booking 98765 updated
-
-
-Authors
-Hassan Olukayode
-Festus Friday Omaku
