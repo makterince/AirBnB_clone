@@ -6,7 +6,14 @@ JSON file and deserializes JSON file to instances
 
 import json
 import os.path
+from models.base_model import BaseModel
+from models.user import User
 
+class_dict = {
+        "BaseModel": BaseModel,
+        "User": User
+        }
+#Filestorage == type(self)
 
 class FileStorage:
     """serializes/deserializes instances to/from JSON file"""
@@ -34,14 +41,14 @@ class FileStorage:
 
     def reload(self):
         """deserializes the JSON file to __objects"""
-         try:
-             with open(self.__file_path, "r") as f:
-                 my_dict = json.load(f)
-                 for key, value in my_dict.items():
-                     class_name, obj_id = key.split('.')
-                     module = __import__('models.' + class_name.lower(),
-                             fromlist=[class_name])
-                     cls = getattr(module, class_name)
-                     self.__objects[key] = cls(**value)
-         except FileNotFoundError:
-             pass
+        try:
+            with open(self.__file_path, "r") as f:
+                my_dict = json.load(f)
+                for key, value in my_dict.items():
+                    class_name, obj_id = key.split('.')
+                    module = __import__('models.' + class_name.lower(),
+                            fromlist=[class_name])
+                    cls = getattr(module, class_name)
+                    self.__objects[key] = cls(**value)
+        except FileNotFoundError:
+            pass
